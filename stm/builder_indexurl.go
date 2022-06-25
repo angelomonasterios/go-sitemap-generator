@@ -1,8 +1,6 @@
 package stm
 
 import (
-	"time"
-
 	"github.com/beevik/etree"
 )
 
@@ -23,11 +21,6 @@ func (su *sitemapIndexURL) XML() []byte {
 	sitemap := doc.CreateElement("sitemap")
 
 	SetBuilderElementValue(sitemap, su.data, "loc")
-
-	if _, ok := SetBuilderElementValue(sitemap, su.data, "lastmod"); !ok {
-		lastmod := sitemap.CreateElement("lastmod")
-		lastmod.SetText(time.Now().Format(time.RFC3339))
-	}
 
 	if su.opts.pretty {
 		doc.Indent(2)
